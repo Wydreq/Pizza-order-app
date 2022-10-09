@@ -5,7 +5,7 @@ import PizzaItem from "./PizzaItem/PizzaItem";
 const AVAILABLE_PIZZAS = [
   {
     id: "m1",
-    name: "Margerita",
+    name: "Margherita",
     ingredients: "Tomato sauce, cheese, oregano",
     price: 22.99,
   },
@@ -23,7 +23,7 @@ const AVAILABLE_PIZZAS = [
   },
   {
     id: "m4",
-    name: "Americana Barcebue",
+    name: "Americano Barcebue",
     ingredients: "Barbecue sauce, cheese, oregano",
     price: 18.99,
   },
