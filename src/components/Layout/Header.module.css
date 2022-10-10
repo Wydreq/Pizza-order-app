@@ -7,7 +7,7 @@
   background-color: #333;
   color: white;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   padding: 0 10%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -26,4 +26,19 @@
   height: 100%;
   object-fit: cover;
   transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
+}
+
+.icon {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.header h1 {
+  margin-right: auto;
+}
+
+@media (max-width: 540px) {
+  .header h1 {
+    font-size: 20px;
+  }
 }
