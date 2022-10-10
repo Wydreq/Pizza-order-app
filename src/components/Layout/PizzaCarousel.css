@@ -1,0 +1,34 @@
+.carousel-all {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  z-index: 0;
+}
+
+.carousel-item-one {
+  background-image: url("../../assets/pizza1.jpg");
+}
+
+.carousel-item-two {
+  background-image: url("../../assets/pizza2.jpg");
+}
+
+.carousel-item-three {
+  background-image: url("../../assets/pizza3.jpg");
+}
+
+.hero-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+
+.home-brand {
+  background-color: #333;
+}

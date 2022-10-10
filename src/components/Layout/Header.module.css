@@ -29,8 +29,27 @@
 }
 
 .icon {
-  font-size: 30px;
+  font-size: 2.7rem;
   margin-right: 10px;
+  color: rgb(0, 146, 70);
+}
+
+.logout {
+  background-color: white;
+  color: black;
+  padding: 0.8rem 1.3rem;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background-color: grey;
+}
+
+.liana {
+  color: rgb(206, 43, 55);
+  margin-left: 2px;
 }
 
 .header h1 {
@@ -40,5 +59,11 @@
 @media (max-width: 540px) {
   .header h1 {
     font-size: 20px;
+  }
+
+  .icon {
+    font-size: 1.7rem;
+    margin-right: 10px;
+    color: rgb(0, 146, 70);
   }
 }

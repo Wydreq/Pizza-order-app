@@ -1,9 +1,8 @@
 import classes from "./PizzaItemForm.module.css";
 import Input from "../../UI/Input";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 const PizzaItemForm = (props) => {
-  const [amountIsValid, setAmountIsValid] = useState(true);
   const amoutInputRef = useRef();
 
   const submitHandler = (event) => {
@@ -17,7 +16,6 @@ const PizzaItemForm = (props) => {
       enteredAmountNumber < 1 ||
       enteredAmountNumber > 5
     ) {
-      setAmountIsValid(false);
       return;
     }
     props.onAddToCart(enteredAmountNumber);
@@ -27,7 +25,7 @@ const PizzaItemForm = (props) => {
     <form className={classes.form} onSubmit={submitHandler}>
       <Input
         ref={amoutInputRef}
-        label="Amount"
+        label="Amount: "
         input={{
           id: "amount" + props.id,
           type: "number",
@@ -37,8 +35,7 @@ const PizzaItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <button>+ Add</button>
-      {!amountIsValid && <p>Please enter a valid amount 1-5.</p>}
+      <button>Add</button>
     </form>
   );
 };

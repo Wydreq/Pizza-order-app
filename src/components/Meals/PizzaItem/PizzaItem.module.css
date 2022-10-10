@@ -1,5 +1,6 @@
 .meal {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   margin: 1rem;
   padding-bottom: 1rem;
@@ -8,15 +9,22 @@
 
 .meal h3 {
   margin: 0 0 0.25rem 0;
+  color: rgb(206, 43, 55);
 }
 
 .description {
   font-style: italic;
+  /* color: rgb(206, 43, 55); */
 }
 
 .price {
   margin-top: 0.25rem;
   font-weight: bold;
-  color: #ad5502;
+  color: rgb(0, 146, 70);
   font-size: 1.25rem;
+}
+
+.formContainer {
+  width: 30%;
+  height: 70%;
 }

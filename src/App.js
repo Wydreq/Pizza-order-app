@@ -1,28 +1,25 @@
 import "./App.css";
 import React, { useState } from "react";
-import Header from "./components/Layout/Header";
-import Pizzas from "./components/Meals/Pizzas";
-import Cart from "./components/Cart/Cart";
 import CartProvider from "./store/CartProvider";
+import "bootstrap/dist/css/bootstrap.min.css";
+import UserPanel from "./components/UserPanel/UserPanel";
+import AdminPanel from "./components/AdminPanel/AdminPanel";
 
 function App() {
-  const [cartIsShown, setCartIsShown] = useState(false);
+  const [isAdminSignedIn, setIsAdminSignedIn] = useState(false);
 
-  const showCartHandler = () => {
-    setCartIsShown(true);
-  };
-
-  const hideCartHandler = () => {
-    setCartIsShown(false);
+  const onAdminLog = () => {
+    if (isAdminSignedIn) {
+      setIsAdminSignedIn(false);
+    } else {
+      setIsAdminSignedIn(true);
+    }
   };
 
   return (
     <CartProvider>
-      {cartIsShown && <Cart onClick={hideCartHandler} />}
-      <Header onClick={showCartHandler} />
-      <main>
-        <Pizzas />
-      </main>
+      {!isAdminSignedIn && <UserPanel onClick={onAdminLog} />}
+      {isAdminSignedIn && <AdminPanel onClick={onAdminLog} />}
     </CartProvider>
   );
 }

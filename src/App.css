@@ -2,8 +2,21 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
+  background-color: #333;
+}
+
+.carousel-all {
+  background-color: #333;
+}
+
+#root {
+  background-color: #333;
+}
+
+html {
   background-color: #333;
 }

@@ -23,7 +23,7 @@ const PizzaItem = (props) => {
         <div className={classes.description}>{props.ingredients}</div>
         <div className={classes.price}>{price}</div>
       </div>
-      <div>
+      <div className={classes.formContainer}>
         <PizzaItemForm onAddToCart={addToCartHandler} />
       </div>
     </li>
