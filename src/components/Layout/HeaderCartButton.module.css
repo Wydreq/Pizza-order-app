@@ -50,3 +50,11 @@
     transform: scale(1);
   }
 }
+
+@media (max-width: 540px) {
+  .button {
+    width: 50%;
+    height: 70%;
+    margin-left: 10px;
+  }
+}
