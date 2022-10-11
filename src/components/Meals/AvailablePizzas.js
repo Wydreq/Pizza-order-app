@@ -1,36 +1,12 @@
+import { useContext } from "react";
 import Card from "../UI/Card";
 import classes from "./AvailablePizzas.module.css";
 import PizzaItem from "./PizzaItem/PizzaItem";
-
-const AVAILABLE_PIZZAS = [
-  {
-    id: "m1",
-    name: "Margherita",
-    ingredients: "Tomato sauce, cheese, oregano",
-    price: 22.99,
-  },
-  {
-    id: "m2",
-    name: "Capriciossa",
-    ingredients: "Tomato sauce, cheese, oregano, meat",
-    price: 16.5,
-  },
-  {
-    id: "m3",
-    name: "Prosciutto Crudo",
-    ingredients: "Tomato sauce, cheese, oregano, cherry tomatoes",
-    price: 12.99,
-  },
-  {
-    id: "m4",
-    name: "Americano Barcebue",
-    ingredients: "Barbecue sauce, cheese, oregano",
-    price: 18.99,
-  },
-];
+import PizzasContext from "../../store/pizzas-context";
 
 const AvailablePizzas = () => {
-  const pizzasList = AVAILABLE_PIZZAS.map((pizza) => (
+  const ctx = useContext(PizzasContext);
+  const pizzasList = ctx.map((pizza) => (
     <PizzaItem
       id={pizza.id}
       key={pizza.id}

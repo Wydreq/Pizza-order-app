@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import PizzasContext from "../../../store/pizzas-context";
 import classes from "./AddNewPizzaForm.module.css";
 
 const AddNewPizzaForm = (props) => {
+  const ctx = useContext(PizzasContext);
   const [enteredName, setEnteredName] = useState("");
   const [enteredIngredients, setEnteredIngredients] = useState("");
   const [enteredPrice, setEnteredPrice] = useState("");
@@ -18,17 +20,36 @@ const AddNewPizzaForm = (props) => {
 
   const addMenuPositionHandler = (event) => {
     event.preventDefault();
+    ctx.push({
+      id: Math.random().toString(),
+      name: enteredName,
+      ingredients: enteredIngredients,
+      price: enteredPrice,
+    });
+    console.log(ctx);
+    setEnteredName("");
+    setEnteredIngredients("");
+    setEnteredPrice("");
   };
 
   return (
     <React.Fragment>
       <form className={classes.form} onSubmit={addMenuPositionHandler}>
         <label>Name</label>
-        <input type="text" onChange={onNameSet} />
+        <input type="text" onChange={onNameSet} value={enteredName} />
         <label>Ingredients</label>
-        <input type="text" onChange={onIngredientsSet} />
+        <input
+          type="text"
+          onChange={onIngredientsSet}
+          value={enteredIngredients}
+        />
         <label>Price</label>
-        <input className={classes.price} type="text" onChange={onPriceSet} />
+        <input
+          className={classes.price}
+          type="text"
+          onChange={onPriceSet}
+          value={enteredPrice}
+        />
         <section className="buttons">
           <button
             className={classes.closeButton}
