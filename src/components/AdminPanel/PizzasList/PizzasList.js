@@ -16,7 +16,7 @@ const PizzasList = () => {
     <div className={classes.menuContainer}>
       {ctx.map((pizza) => {
         return (
-          <div className={classes.itemContainer}>
+          <div className={classes.itemContainer} key={pizza.id}>
             <span className={classes.pizzaName}>{pizza.name}</span>
             <span className={classes.pizzaIngredients}>
               {pizza.ingredients}
