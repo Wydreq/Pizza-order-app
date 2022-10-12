@@ -18,6 +18,8 @@ function App() {
     if (enteredLogin === "test" && enteredPassword === "test") {
       setIsAdminSignedIn(true);
       setIsModalShown(false);
+      setEnteredLogin("");
+      setEnteredPassword("");
     } else {
       setEnteredLogin("");
       setEnteredPassword("");

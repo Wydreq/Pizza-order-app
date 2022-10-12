@@ -2,7 +2,9 @@ import React, { useContext, useState } from "react";
 import PizzasContext from "../../../store/pizzas-context";
 import classes from "./PizzasList.module.css";
 import Modal from "../../UI/Modal";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 const PizzasList = (props) => {
   let ctx = useContext(PizzasContext);
   const [isModal, setIsModal] = useState(false);
@@ -11,6 +13,13 @@ const PizzasList = (props) => {
   const [enteredIngredients, setEnteredIngredients] = useState("");
   const [enteredPrice, setEnteredPrice] = useState("");
   const [enteredID, setEnteredID] = useState();
+
+  Array.prototype.swap = function (x, y) {
+    var b = this[x];
+    this[x] = this[y];
+    this[y] = b;
+    return this;
+  };
 
   const enteringNameHandler = (event) => {
     setEnteredName(event.target.value);
@@ -44,6 +53,23 @@ const PizzasList = (props) => {
     setIsModal(false);
   };
 
+  const menuPositionUpHandler = (id) => {
+    const objWithIdIndex = ctx.findIndex((obj) => obj.id === id);
+    if (objWithIdIndex === 0) {
+      return;
+    }
+    ctx.swap(objWithIdIndex, objWithIdIndex - 1);
+    props.onRestart();
+  };
+  const menuPositionDownHandler = (id) => {
+    const objWithIdIndex = ctx.findIndex((obj) => obj.id === id);
+    if (objWithIdIndex >= ctx.length - 1) {
+      return;
+    }
+    ctx.swap(objWithIdIndex, objWithIdIndex + 1);
+    props.onRestart();
+  };
+
   return (
     <div className={classes.menuContainer}>
       {ctx.map((pizza) => {
@@ -75,6 +101,22 @@ const PizzasList = (props) => {
               >
                 Remove
               </button>
+              <div className={classes.arrowContainer}>
+                <FontAwesomeIcon
+                  icon={faArrowUp}
+                  className={classes.arrowUp}
+                  onClick={() => {
+                    menuPositionUpHandler(pizza.id);
+                  }}
+                />
+                <FontAwesomeIcon
+                  icon={faArrowDown}
+                  className={classes.arrowDown}
+                  onClick={() => {
+                    menuPositionDownHandler(pizza.id);
+                  }}
+                />
+              </div>
             </div>
             {isModal && (
               <Modal onModalStatusChange={editMenuPositionHandler}>

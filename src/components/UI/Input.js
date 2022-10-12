@@ -5,7 +5,7 @@ const Input = React.forwardRef((props, ref) => {
   return (
     <div className={classes.input}>
       <label htmlFor={props.input.id}>{props.label}</label>
-      <input ref={ref} {...props.input} />
+      <input ref={ref} {...props.input} id={Math.random()} />
     </div>
   );
 });

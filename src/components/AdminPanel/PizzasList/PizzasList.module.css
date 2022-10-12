@@ -37,7 +37,7 @@
 .itemContainer button {
   border-radius: 10px;
   padding: 0.25rem 1rem;
-  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .itemContainer button:hover {
@@ -98,4 +98,13 @@
 
 .modalContainer h1 {
   margin-bottom: 2rem;
+}
+
+.arrowContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrowUp {
+  margin-bottom: 1rem;
 }
