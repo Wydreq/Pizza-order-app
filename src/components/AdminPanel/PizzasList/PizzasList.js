@@ -3,7 +3,14 @@ import PizzasContext from "../../../store/pizzas-context";
 import classes from "./PizzasList.module.css";
 
 const PizzasList = () => {
-  const ctx = useContext(PizzasContext);
+  let ctx = useContext(PizzasContext);
+
+  const editMenuPositionHandler = (id) => {};
+
+  const removeMenuPositionHandler = (id) => {
+    const objWithIdIndex = ctx.findIndex((obj) => obj.id === id);
+    ctx.splice(objWithIdIndex, 1);
+  };
 
   return (
     <div className={classes.menuContainer}>
@@ -15,8 +22,22 @@ const PizzasList = () => {
               {pizza.ingredients}
             </span>
             <span className={classes.pizzaPrice}>${pizza.price}</span>
-            <button className={classes.editButton}>Edit</button>
-            <button className={classes.removeButton}>Remove</button>
+            <button
+              className={classes.editButton}
+              onClick={() => {
+                editMenuPositionHandler(pizza.id);
+              }}
+            >
+              Edit
+            </button>
+            <button
+              className={classes.removeButton}
+              onClick={() => {
+                removeMenuPositionHandler(pizza.id);
+              }}
+            >
+              Remove
+            </button>
           </div>
         );
       })}

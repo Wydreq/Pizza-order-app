@@ -2,6 +2,7 @@
   background-color: transparent;
   width: 50%;
   min-height: 40vh;
+  min-width: 615px;
   color: black;
   border-radius: 40px;
   display: flex;
@@ -30,6 +31,7 @@
   color: black;
   border-radius: 15px;
   height: 5rem;
+  min-width: 512px;
 }
 
 .pizzaName {
