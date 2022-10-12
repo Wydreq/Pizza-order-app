@@ -6,6 +6,11 @@ import PizzasContext from "../../store/pizzas-context";
 
 const AvailablePizzas = () => {
   const ctx = useContext(PizzasContext);
+
+  const consoleLogHandler = () => {
+    console.log(ctx);
+  };
+
   const pizzasList = ctx.map((pizza) => (
     <PizzaItem
       id={pizza.id}
@@ -19,7 +24,7 @@ const AvailablePizzas = () => {
   return (
     <section className={classes.section}>
       <Card>
-        <ul>{pizzasList}</ul>
+        <ul onClick={consoleLogHandler}>{pizzasList}</ul>
       </Card>
     </section>
   );
