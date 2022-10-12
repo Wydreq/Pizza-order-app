@@ -30,6 +30,7 @@ const AddNewPizzaForm = (props) => {
     setEnteredName("");
     setEnteredIngredients("");
     setEnteredPrice("");
+    props.onRestart();
   };
 
   return (

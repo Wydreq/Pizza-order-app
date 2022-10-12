@@ -1,0 +1,16 @@
+.adminModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.box button {
+  padding: 0.25rem 1rem;
+  margin: 0.25rem 1rem;
+}

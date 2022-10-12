@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "./AddNewPizza.module.css";
 import AddNewPizzaForm from "./AddNewPizzaForm";
 
-const AddNewPizza = () => {
+const AddNewPizza = (props) => {
   const [isAddActive, setIsAddActive] = useState(false);
 
   const onAddActive = () => {
@@ -24,7 +24,12 @@ const AddNewPizza = () => {
     >
       <h1>Add new menu position</h1>
       <p>+</p>
-      {isAddActive && <AddNewPizzaForm onRemoveActive={onRemoveActive} />}
+      {isAddActive && (
+        <AddNewPizzaForm
+          onRemoveActive={onRemoveActive}
+          onRestart={props.onRestart}
+        />
+      )}
     </div>
   );
 };
