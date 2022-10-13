@@ -1,70 +1,88 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Pizza order app (Work in progress...)
 
-## Available Scripts
+Simple app that allows you to manage food restaurant.
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### User Panel
 
-### `npm test`
+- Adding menu positions to cart
+- Changing number of items in cart
+- Removing items from cart
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Admin Panel
 
-### `npm run build`
+- Loging into admin panel using login and password
+- Adding new positions to menu
+- Removing menu positions
+- Editing menu positions
+- Changing items order in menu
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### What's to do?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Managing user order
+- Displaying all orders from last 30 days in admin panel
+- Connecting to database
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Tech Stack
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- HTML/CSS
+- JavaScript
+- React
+- Bootstrap
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Installation
 
-### Code Splitting
+Install Node.js and GIT
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Clone the repo
 
-### Analyzing the Bundle Size
+Enter the client directory and type
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+  npm install my-project
+  npm start
+```
+    
+## Screenshots
 
-### Making a Progressive Web App
+### User panel
+ - #### Main menu
+![Main](https://i.postimg.cc/G2NXry5M/main.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+ - #### User Cart
+![UserCart](https://i.postimg.cc/vBD0pz3g/cart.png)
 
-### Advanced Configuration
+ - #### Admin signing up to admin panel (login and password = test)
+![SigningUp](https://i.postimg.cc/mrmdXqNW/login.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+ - #### Admin Panel
+![AdminPanel](https://i.postimg.cc/nhYS7MXz/admin-panel.png)
 
-### Deployment
+ - #### Adding new menu position
+![Adding](https://i.postimg.cc/fWJPFwr2/adding1.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+ - #### Editing existing menu position
+![Editing](https://i.postimg.cc/TYb4dtGn/editing.png)
 
-### `npm run build` fails to minify
+ - #### Menu after changes (New position added, edited and menu items order have changed)
+![End](https://i.postimg.cc/BnGwX2Qk/menu-after-changes.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Authors
+
+- [@bartlomiejwydrzycki](https://www.github.com/wydreq)
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
