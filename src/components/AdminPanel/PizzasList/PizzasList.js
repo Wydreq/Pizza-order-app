@@ -13,6 +13,43 @@ const PizzasList = (props) => {
   const [enteredIngredients, setEnteredIngredients] = useState("");
   const [enteredPrice, setEnteredPrice] = useState("");
   const [enteredID, setEnteredID] = useState();
+  const [menuList, setMenuList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchMenuHandler = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        "https://pizza-order-app-238e1-default-rtdb.europe-west1.firebasedatabase.app/menu.json"
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const data = await response.json();
+
+      const loadedMenu = [];
+
+      for (const key in data) {
+        loadedMenu.push({
+          id: key,
+          name: data[key].name,
+          ingredients: data[key].ingredients,
+          price: data[key].price,
+        });
+      }
+      setMenuList(loadedMenu);
+    } catch (error) {
+      setError(error.message);
+    }
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchMenuHandler();
+  }, [fetchMenuHandler]);
 
   Array.prototype.swap = function (x, y) {
     var b = this[x];
@@ -37,11 +74,29 @@ const PizzasList = (props) => {
     setIsModal(!isModal);
   };
 
-  const removeMenuPositionHandler = (id) => {
-    const objWithIdIndex = ctx.findIndex((obj) => obj.id === id);
-    ctx.splice(objWithIdIndex, 1);
-    props.onRestart();
-  };
+  const removeMenuPositionHandler = useCallback(async (id) => {
+    fetch(
+      // don't add .json at [data Name]
+      `https://pizza-order-app-238e1-default-rtdb.europe-west1.firebasedatabase.app/menu/${id}.json`,
+      {
+        method: "Delete",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          // if sucess do something
+        } else {
+          // if fail throw error
+          throw new Error("could not delete data");
+        }
+      })
+      .catch((error) => {
+        this.error = error.message;
+      });
+  });
 
   const submitEditHandler = (event) => {
     event.preventDefault();
