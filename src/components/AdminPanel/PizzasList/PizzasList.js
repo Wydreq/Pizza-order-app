@@ -1,12 +1,10 @@
-import React, { useContext, useState } from "react";
-import PizzasContext from "../../../store/pizzas-context";
+import React, { useState, useEffect, useCallback } from "react";
 import classes from "./PizzasList.module.css";
 import Modal from "../../UI/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 const PizzasList = (props) => {
-  let ctx = useContext(PizzasContext);
   const [isModal, setIsModal] = useState(false);
 
   const [enteredName, setEnteredName] = useState("");
@@ -14,11 +12,9 @@ const PizzasList = (props) => {
   const [enteredPrice, setEnteredPrice] = useState("");
   const [enteredID, setEnteredID] = useState();
   const [menuList, setMenuList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchMenuHandler = useCallback(async () => {
-    setIsLoading(true);
     setError(null);
     try {
       const response = await fetch(
@@ -44,7 +40,6 @@ const PizzasList = (props) => {
     } catch (error) {
       setError(error.message);
     }
-    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -96,38 +91,55 @@ const PizzasList = (props) => {
       .catch((error) => {
         this.error = error.message;
       });
-  });
+  }, []);
 
-  const submitEditHandler = (event) => {
+  const submitEditHandler = useCallback(async (event) => {
     event.preventDefault();
-    const objWithIdIndex = ctx.findIndex((obj) => obj.id === enteredID);
-    ctx[objWithIdIndex].name = enteredName;
-    ctx[objWithIdIndex].ingredients = enteredIngredients;
-    ctx[objWithIdIndex].price = enteredPrice;
-    props.onRestart();
-    setIsModal(false);
-  };
+
+    try {
+      const response = await fetch(
+        `https://pizza-order-app-238e1-default-rtdb.europe-west1.firebasedatabase.app/menu/${enteredID}.json`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const data = await response.json();
+
+      data[enteredID].update({
+        name: enteredName,
+        ingredients: enteredIngredients,
+        price: enteredPrice,
+      });
+    } catch (error) {
+      setError(error.message);
+    }
+  }, []);
 
   const menuPositionUpHandler = (id) => {
-    const objWithIdIndex = ctx.findIndex((obj) => obj.id === id);
+    const objWithIdIndex = menuList.findIndex((obj) => obj.id === id);
     if (objWithIdIndex === 0) {
       return;
     }
-    ctx.swap(objWithIdIndex, objWithIdIndex - 1);
+    menuList.swap(objWithIdIndex, objWithIdIndex - 1);
     props.onRestart();
   };
   const menuPositionDownHandler = (id) => {
-    const objWithIdIndex = ctx.findIndex((obj) => obj.id === id);
-    if (objWithIdIndex >= ctx.length - 1) {
+    const objWithIdIndex = menuList.findIndex((obj) => obj.id === id);
+    if (objWithIdIndex >= menuList.length - 1) {
       return;
     }
-    ctx.swap(objWithIdIndex, objWithIdIndex + 1);
+    menuList.swap(objWithIdIndex, objWithIdIndex + 1);
     props.onRestart();
   };
 
   return (
     <div className={classes.menuContainer}>
-      {ctx.map((pizza) => {
+      {menuList.map((pizza) => {
         return (
           <React.Fragment key={pizza.id}>
             <div className={classes.itemContainer} key={pizza.id}>

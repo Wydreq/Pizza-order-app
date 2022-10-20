@@ -1,9 +1,7 @@
-import React, { useContext, useState } from "react";
-import PizzasContext from "../../../store/pizzas-context";
+import React, { useState } from "react";
 import classes from "./AddNewPizzaForm.module.css";
 
 const AddNewPizzaForm = (props) => {
-  const ctx = useContext(PizzasContext);
   const [enteredName, setEnteredName] = useState("");
   const [enteredIngredients, setEnteredIngredients] = useState("");
   const [enteredPrice, setEnteredPrice] = useState("");
@@ -18,20 +16,33 @@ const AddNewPizzaForm = (props) => {
     setEnteredPrice(event.target.value);
   };
 
-  const addMenuPositionHandler = (event) => {
+  async function addMenuPositionHandler(event) {
     event.preventDefault();
-    ctx.push({
+
+    const menuPosition = {
       id: Math.random().toString(),
       name: enteredName,
       ingredients: enteredIngredients,
       price: enteredPrice,
-    });
-    console.log(ctx);
+    };
+
+    const response = await fetch(
+      "https://pizza-order-app-238e1-default-rtdb.europe-west1.firebasedatabase.app/menu.json",
+      {
+        method: "POST",
+        body: JSON.stringify(menuPosition),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
     setEnteredName("");
     setEnteredIngredients("");
     setEnteredPrice("");
     props.onRestart();
-  };
+  }
 
   return (
     <React.Fragment>
