@@ -87,7 +87,7 @@ const Cart = (props) => {
   const isSubmitingModalContent = <p>Sending order data...</p>;
   const didSubmitModalContent = (
     <React.Fragment>
-      <p>Syccesfully sent the order!</p>
+      <p>Your order has been sent!</p>
       <div className={classes.actions}>
         <button className={classes["button--alt"]} onClick={props.onClick}>
           Close

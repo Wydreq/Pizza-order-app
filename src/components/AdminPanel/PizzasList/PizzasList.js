@@ -82,7 +82,7 @@ const PizzasList = (props) => {
     )
       .then((response) => {
         if (response.ok) {
-          // if sucess do something
+          fetchMenuHandler();
         } else {
           // if fail throw error
           throw new Error("could not delete data");
