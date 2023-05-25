@@ -95,29 +95,32 @@ const PizzasList = (props) => {
 
   const submitEditHandler = useCallback(async (event) => {
     event.preventDefault();
-
-    try {
-      const response = await fetch(
+    console.log(enteredID);
+    fetch(
         `https://pizza-order-app-238e1-default-rtdb.europe-west1.firebasedatabase.app/menu/${enteredID}.json`,
         {
-          method: "PATCH",
-          body: JSON.stringify(),
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: enteredID,
+            ingredients: enteredIngredients,
+            name: enteredName,
+            price: enteredPrice
+          })
         }
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-
-      const data = await response.json();
-
-      data[enteredID].update({
-        name: enteredName,
-        ingredients: enteredIngredients,
-        price: enteredPrice,
-      });
-    } catch (error) {
-      setError(error.message);
-    }
+    )
+        .then((response) => {
+          if (response.ok) {
+            fetchMenuHandler();
+          } else {
+            throw new Error("could not delete data");
+          }
+        })
+        .catch((error) => {
+          this.error = error.message;
+        });
   }, []);
 
   const menuPositionUpHandler = (id) => {
@@ -151,11 +154,11 @@ const PizzasList = (props) => {
               <button
                 className={classes.editButton}
                 onClick={() => {
-                  editMenuPositionHandler();
                   setEnteredID(pizza.id);
                   setEnteredName(pizza.name);
                   setEnteredIngredients(pizza.ingredients);
                   setEnteredPrice(pizza.price);
+                  editMenuPositionHandler();
                 }}
               >
                 Edit

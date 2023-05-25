@@ -29,3 +29,16 @@
 button {
     padding: 5px;
 }
+
+.ordersContainer {
+    width: 70%;
+    display: flex;
+    min-height: 400px;
+    align-items: center;
+    /*justify-content: center;*/
+    flex-direction: column;
+    border: 5px solid gray;
+    border-radius: 15px;
+    margin-top: 30px;
+    overflow: auto;
+}

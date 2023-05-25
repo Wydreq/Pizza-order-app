@@ -17,7 +17,9 @@ const AdminPanel = (props) => {
       <Header isAdminSignedIn="true" onClick={props.onClick} />
       <section className={classes.container}>
         <AddNewPizza onRestart={restartHandler} />
+          <h1 className={classes.title}>Current menu</h1>
         <PizzasList onRestart={restartHandler} />
+          <h1 className={classes.title}>New orders</h1>
         <NewOrders/>
       </section>
     </React.Fragment>

@@ -6,3 +6,8 @@
   align-items: center;
   flex-direction: column;
 }
+
+.title {
+  color: gray;
+  margin-top: 30px;
+}

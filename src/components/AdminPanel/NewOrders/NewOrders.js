@@ -2,21 +2,12 @@ import classes from './NewOrders.module.css';
 import { useState, useEffect, useCallback } from 'react';
 import OrderItem from './OrderItem';
 
-
-const NEW_ORDERS = [
-    {
-        id: '01',
-        status: 'new',
-        pizza: 'Margerita',
-    },
-    {
-        id: '02',
-        status: 'new',
-        pizza: 'Capriciossa'
-    }
-]
-
 const NewOrders = () => {
+
+    useEffect(() => {
+        fetchMenuHandler();
+    });
+
 
     const [loadedOrders, setLoadedOrders] = useState([]);
     const [reset, setReset] = useState(false);
@@ -31,11 +22,11 @@ const NewOrders = () => {
         }
 
         const data = await response.json();
-
         const loadedMenu = [];
 
         for (const key in data) {
             loadedMenu.push({
+            id: key,
             orderedItems: data[key].orderedItems,
             user: data[key].user,
             });
@@ -45,34 +36,15 @@ const NewOrders = () => {
         }
     }, []);
 
-  useEffect(() => {
-    fetchMenuHandler();
-    setReset(!reset);
-  }, []);
-
-    console.log(loadedOrders);
     return(
-        <div className={classes.container}>
-        <div className={classes.itemCont}>
-            <p className={classes.title}>Margerita</p>
-            <p className={classes.address}>Bartłomiej Wydrzycki Zalesie 128B, Kielce</p>
-            <button>Realized</button>
-        </div>
-        <div className={classes.itemCont}>
-            <p className={classes.title}>Capriciossa</p>
-            <p className={classes.address}>Jakub Wojnowski, Wojnowska 111, Sokołów</p>
-            <button>Realized</button>
-        </div>
-        <div className={classes.itemCont}>
-            <p className={classes.title}>Parma</p>
-            <p className={classes.address}>Mati Gembka, Górnicka 123, Radom</p>
-            <button>Realized</button>
-        </div>
-        <div className={classes.itemCont}>
-            <p className={classes.title}>Wojnollowsky</p>
-            <p className={classes.address}>Karol Górnicki, Artwinskiego 19, Kielce</p>
-            <button>Realized</button>
-        </div>
+        <div className={classes.ordersContainer}>
+            {loadedOrders.map((order) => {
+                if(order.user.status == 'new') {
+                    return (
+                        <OrderItem key={order.id} order={order} onRefresh={fetchMenuHandler}/>
+                    )
+                }
+            })}
         </div>
     )
 }
