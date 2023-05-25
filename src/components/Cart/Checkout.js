@@ -51,6 +51,7 @@ const Checkout = (props) => {
       street: enteredStreet,
       city: enteredCity,
       postalCode: enteredCode,
+      status: 'new',
     });
   };
 
